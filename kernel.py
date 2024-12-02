@@ -18,5 +18,3 @@ response_data = json.loads(response.model_dump_json())
 message_content = response_data.get("message", {}).get("content", "No content available")
 
 print(message_content)
-
-#test
