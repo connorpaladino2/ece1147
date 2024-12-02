@@ -1,0 +1,12 @@
+import ollama
+
+response = ollama.chat(
+    model='llama3.2-vision',
+    messages=[{
+        'role': 'user',
+        'content': 'What is in this image?',
+        'images': ['data/data-20241202T145651Z-001/data/images/abortion/1018237459270914049.jpg']
+    }]
+)
+
+print(response)
