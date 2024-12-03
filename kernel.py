@@ -1,35 +1,71 @@
 from run_text import run_text
 import pandas as pd
 
+def do_gun_tweet_train():
+    input_df = pd.read_csv("data/data-20241202T145651Z-001/data/gun_control_train.csv")
 
-input_df = pd.read_csv("data/data-20241202T145651Z-001/data/gun_control_train.csv")
+    j = 0
+    output_arr = []
 
-j = 0
-output_arr = []
+    for _, row in input_df.iterrows():
+        arr = []
+        text = row.iloc[2]
+        text = ''.join(char for char in text if 32 <= ord(char) <= 126)
+        j += 1
+        print(f"Row {j}: \"{text}\"")
 
-for _, row in input_df.iterrows():
-    arr = []
-    text = row.iloc[2]
-    text = ''.join(char for char in text if 32 <= ord(char) <= 126)
-    j += 1
-    print(f"Row {j}: \"{text}\"")
+        output = run_text(f"{row.iloc[2]}")
 
-    output = run_text(f"{row.iloc[2]}")
+        i = 0
+        for line in output.strip().split("\n"):
+            if "Question" in line:  # Look for lines containing "Question"
+                try:
+                    answer = float(line.split(":")[1].strip())
+                    arr.append(answer)
+                except (IndexError, ValueError):
+                    print(f"Skipping malformed line: {line}")
+                i += 1
 
-    i = 0
-    for line in output.strip().split("\n"):
-        if "Question" in line:  # Look for lines containing "Question"
-            try:
-                answer = float(line.split(":")[1].strip())
-                arr.append(answer)
-            except (IndexError, ValueError):
-                print(f"Skipping malformed line: {line}")
-            i += 1
+        print(arr)
+        output_arr.append(arr)
 
-    print(arr)
-    output_arr.append(arr)
+    print(output_arr)
 
-print(output_arr)
+    output_df = pd.DataFrame(output_arr)
+    output_df.to_csv("Output_Text_GunControl.csv")
 
-output_df = pd.DataFrame(output_arr)
-output_df.to_csv("Output_Text_GunControl.csv")
+def do_abortion_tweet_train():
+    input_df = pd.read_csv("data/data-20241202T145651Z-001/data/abortion_train.csv")
+
+    j = 0
+    output_arr = []
+
+    for _, row in input_df.iterrows():
+        arr = []
+        text = row.iloc[2]
+        text = ''.join(char for char in text if 32 <= ord(char) <= 126)
+        j += 1
+        print(f"Row {j}: \"{text}\"")
+
+        output = run_text(f"{row.iloc[2]}")
+
+        i = 0
+        for line in output.strip().split("\n"):
+            if "Question" in line:  # Look for lines containing "Question"
+                try:
+                    answer = float(line.split(":")[1].strip())
+                    arr.append(answer)
+                except (IndexError, ValueError):
+                    print(f"Skipping malformed line: {line}")
+                i += 1
+
+        print(arr)
+        output_arr.append(arr)
+
+    print(output_arr)
+
+    output_df = pd.DataFrame(output_arr)
+    output_df.to_csv("Output_Text_Abortion.csv")
+
+#do_gun_tweet_train()
+do_abortion_tweet_train()
