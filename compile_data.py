@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 output_arr = []
-gun_text_df = pd.read_csv("Output_Text_GunControl.csv")
+gun_text_df = pd.read_csv("Output_Text_GunControl_Test.csv")
 gun_image_df = pd.read_csv("Output_Image_GunControl.csv")
 data_df = pd.read_csv("data/data-20241202T145651Z-001/data/gun_control_train.csv")
 
@@ -35,4 +35,4 @@ for _, row_in in gun_text_df.iterrows():
 
 output_df = pd.DataFrame(output_arr, columns=["Text Question 1","Text Question 2","Text Question 3","Text Question 4","Text Question 5","Text Question 6","Text Question 7","Image Question 1","Image Question 2","Image Question 3","Image Question 4","Image Question 5","Support?","Pursuasive?"])
 
-output_df.to_csv("gun_train_data.csv", index=False)
+output_df.to_csv("gun_test_data.csv", index=False)
