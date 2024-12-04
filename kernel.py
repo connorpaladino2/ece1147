@@ -241,8 +241,8 @@ def do_gun_images():
     
 
 
-#do_gun_tweet_train()
+do_gun_tweet_train()
 #do_gun_tweet_test()
 #do_abortion_tweet_train()
-do_abortion_tweet_test()
+#do_abortion_tweet_test()
 #do_gun_images()

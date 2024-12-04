@@ -9,43 +9,26 @@ data_df = pd.read_csv("data/data-20241202T145651Z-001/data/gun_control_train.csv
 
 gun_image_df['0'] = gun_image_df['0'].str.replace('.jpg', '', regex=False)
 
-gun_text_df['tweet_id'] = gun_text_df['tweet_id'].astype('int64')
+gun_text_df['0'] = gun_text_df['0'].astype('int64')
 data_df['tweet_id'] = data_df['tweet_id'].astype('int64')
 
 print(gun_text_df)
 print(data_df)
 
 for _, row_in in gun_text_df.iterrows():
+    
+    if row_in.isna().any():
+         continue
+    
     flag = False
     working_arr = []
     for _, row in gun_image_df.iterrows():
-        if str(row.iloc[0])[:5] == str(int(row_in.iloc[7]))[:5]:
-            working_arr += [row_in.iloc[0],row_in.iloc[1],row_in.iloc[2],row_in.iloc[3],row_in.iloc[4],row_in.iloc[5],row_in.iloc[6],row.iloc[1],row.iloc[2],row.iloc[3],row.iloc[4],row.iloc[5]]
+        if str(row.iloc[0])[:5] == str(int(row_in.iloc[0]))[:5]:
+            working_arr += [row_in.iloc[3],row_in.iloc[4],row_in.iloc[5],row_in.iloc[6],row_in.iloc[7],row_in.iloc[8],row_in.iloc[9],row.iloc[1],row.iloc[2],row.iloc[3],row.iloc[4],row.iloc[5],row_in.iloc[1],row_in.iloc[2]]
             flag = True
             break
     if not flag:
-        working_arr += [row_in.iloc[0],row_in.iloc[1],row_in.iloc[2],row_in.iloc[3],row_in.iloc[4],row_in.iloc[5],row_in.iloc[6],0.0,0.0,0.0,0.0,0.0]
-
-    flag = False
-    for _, row in data_df.iterrows():
-        if str(int(row.iloc[0]))[:4] == str(int(row_in.iloc[7]))[:4]:
-            
-            if row.iloc[3] == "oppose":
-                working_arr += [0.0]
-            else:
-                working_arr += [1.0]
-
-            
-            if row.iloc[4] == "no":
-                working_arr += [0.0]
-            else:
-                working_arr += [1.0]
-            
-            flag = True
-            break
-
-    if not flag:
-                working_arr += [0.0, 0.0]
+        working_arr += [row_in.iloc[3],row_in.iloc[4],row_in.iloc[5],row_in.iloc[6],row_in.iloc[7],row_in.iloc[8],row_in.iloc[9],0.0,0.0,0.0,0.0,0.0,row_in.iloc[1],row_in.iloc[2]]
 
     output_arr.append(working_arr)
     
