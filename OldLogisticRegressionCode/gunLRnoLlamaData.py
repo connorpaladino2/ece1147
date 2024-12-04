@@ -3,17 +3,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report
 
-train_df = pd.read_csv('data/data-20241202T145651Z-001/data/abortion_train.csv')
-dev_df = pd.read_csv('data/data-20241202T145651Z-001/data/abortion_dev.csv')
+train_df = pd.read_csv('data/data-20241202T145651Z-001/data/gun_control_train.csv')
+dev_df = pd.read_csv('data/data-20241202T145651Z-001/data/gun_control_dev.csv')
 
 vectorizer = TfidfVectorizer(max_features=6000)
 
 #fit the vectorizer on the training data and transform both training and dev data
 X_train = vectorizer.fit_transform(train_df['tweet_text'])
 X_dev = vectorizer.transform(dev_df['tweet_text'])
-
-# #feature matrix shape
-# print(X_train.shape)
 
 clf = LogisticRegression()
 
