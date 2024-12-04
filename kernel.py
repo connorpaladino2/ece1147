@@ -238,11 +238,58 @@ def do_gun_images():
 
     output_df = pd.DataFrame(output_arr)
     output_df.to_csv("Output_Image_GunControl.csv")
+
+def do_abortion_images():
+    input = "data/data-20241202T145651Z-001/data/images/abortion"
+
+    file_names = os.listdir(input)
+
+    j = 0
+    output_arr = []
+
+    for img in file_names:
+        arr = []
+        j += 1
+        print(f"Row {j}: \"{img}\"")
+
+        try:
+            with Image.open("data/data-20241202T145651Z-001/data/images/abortion/" + img) as Img:
+                Img.verify()  # Verify image integrity
+        except Exception as e:
+            print(e)
+            arr = [0.0, 0.0, 0.0, 0.0, 0.0]
+            output_arr.append([img] + arr)
+            continue
+    
+        output = run_image(img)
+
+        print(output)
+
+        i = 0
+        for line in output.strip().split("\n"):
+            if "Question" in line:  # Look for lines containing "Question"
+                try:
+                    answer = float(line.split(":")[1].strip())
+                    arr.append(answer)
+                except (IndexError, ValueError):
+                    print(f"Skipping malformed line: {line}")
+                i += 1
+
+        if arr == []:
+            arr = [0.0, 0.0, 0.0, 0.0, 0.0]
+        print([img] + arr)
+        output_arr.append([img] + arr)
+
+    print(output_arr)
+
+    output_df = pd.DataFrame(output_arr)
+    output_df.to_csv("Output_Image_Abortion.csv")
     
 
 
 #do_gun_tweet_train()
-do_gun_tweet_test()
+#do_gun_tweet_test()
 #do_abortion_tweet_train()
 #do_abortion_tweet_test()
 #do_gun_images()
+#do_abortion_images()

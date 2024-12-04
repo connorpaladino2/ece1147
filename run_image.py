@@ -4,7 +4,7 @@ import json
 
 def run_image(input):
 
-    input = "data/data-20241202T145651Z-001/data/images/gun_control/" + input
+    input = "data/data-20241202T145651Z-001/data/images/abortion/" + input
     
     prompt = "Please summarize this image in 1 sentence for research purposes."
     # Call the chat API
