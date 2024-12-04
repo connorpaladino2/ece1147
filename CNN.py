@@ -35,16 +35,13 @@ def run_CNN(train_path, test_path):
         Flatten(),
         Dense(128, activation='relu'),
         Dropout(0.5),
-        Dense(1, activation='sigmoid')  # Use 'softmax' for multi-class classification
+        Dense(1, activation='sigmoid')
     ])
 
-    # Compile the model
     model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
-    # Train the model
     model.fit(X_train, y_train, epochs=20, batch_size=32, verbose=1)
 
-    # Evaluate on the test set
     y_pred_probs = model.predict(X_test)
     y_pred = (y_pred_probs > 0.5).astype('int32').flatten()
 
