@@ -19,17 +19,12 @@ def run_SVM(train_path, test_path):
     svm.fit(X_train, y_train)
     train_score = svm.score(X_train, y_train)
     
-    print("Training Score: ", train_score)
-    
     y_pred = svm.predict(X_test)
     
     false_positive_rate = np.sum(np.logical_and(y_test == 0, y_pred == 1))
     false_negative_rate = np.sum(np.logical_and(y_test == 1, y_pred == 0))
     
     total_accuracy = accuracy_score(y_test, y_pred)
-    print("Accuracy: ", total_accuracy)
-    print("False Positive Rate: ", false_positive_rate)
-    print("False Negative Rate: ", false_negative_rate)
     
     return total_accuracy, false_positive_rate, false_negative_rate
     
