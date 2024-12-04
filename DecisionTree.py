@@ -1,11 +1,10 @@
-from sklearn.svm import SVC
-from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 import numpy as np
 import pandas as pd
 
-def run_SVM(train_path, test_path):
+def run_DTC(train_path, test_path):
     train_data = pd.read_csv(train_path)
     test_data = pd.read_csv(test_path)
 
@@ -15,13 +14,13 @@ def run_SVM(train_path, test_path):
     X_test = test_data.iloc[1:, :12]
     y_test = test_data.iloc[1:, 12]
     
-    svm = SVC(kernel='linear', decision_function_shape='ovo')
-    svm.fit(X_train, y_train)
-    train_score = svm.score(X_train, y_train)
+    dtc = DecisionTreeClassifier()
+    dtc.fit(X_train, y_train)
+    train_score = dtc.score(X_train, y_train)
     
     print("Training Score: ", train_score)
     
-    y_pred = svm.predict(X_test)
+    y_pred = dtc.predict(X_test)
     
     false_positive_rate = np.sum(np.logical_and(y_test == 0, y_pred == 1))
     false_negative_rate = np.sum(np.logical_and(y_test == 1, y_pred == 0))
@@ -33,4 +32,4 @@ def run_SVM(train_path, test_path):
     
     return total_accuracy, false_positive_rate, false_negative_rate
     
-run_SVM("gun_train_data.csv", "gun_test_data.csv")
+run_DTC("gun_train_data.csv", "gun_test_data.csv")
