@@ -19,6 +19,16 @@ ab_dtc_accuracy, ab_dtc_fp, ab_dtc_fn = run_DTC(ab_train_path, ab_test_path)
 ab_cnn_accuracy, ab_cnn_fp, ab_cnn_fn = run_CNN(ab_train_path, ab_test_path)
 ab_lr_accuracy, ab_lr_fp, ab_lr_fn = run_LR(ab_train_path, ab_test_path)
 
+gc_svm_persuasion_accuracy, gc_svm_persuasion_fp, gc_svm_persuasion_fn = run_SVM_Persuasion(gc_train_path, gc_test_path)
+gc_dtc_persuasion_accuracy, gc_dtc_persuasion_fp, gc_dtc_persuasion_fn = run_DTC_Persuasion(gc_train_path, gc_test_path)
+gc_cnn_persuasion_accuracy, gc_cnn_persuasion_fp, gc_cnn_persuasion_fn = run_CNN_Persuasion(gc_train_path, gc_test_path)
+gc_lr_persuasion_accuracy, gc_lr_persuasion_fp, gc_lr_persuasion_fn = run_LR_Persuasion(gc_train_path, gc_test_path)
+
+ab_svm_persuasion_accuracy, ab_svm_persuasion_fp, ab_svm_persuasion_fn = run_SVM_Persuasion(ab_train_path, ab_test_path)
+ab_dtc_persuasion_accuracy, ab_dtc_persuasion_fp, ab_dtc_persuasion_fn = run_DTC_Persuasion(ab_train_path, ab_test_path)
+ab_cnn_persuasion_accuracy, ab_cnn_persuasion_fp, ab_cnn_persuasion_fn = run_CNN_Persuasion(ab_train_path, ab_test_path)
+ab_lr_persuasion_accuracy, ab_lr_persuasion_fp, ab_lr_persuasion_fn = run_LR_Persuasion(ab_train_path, ab_test_path)
+
 print("Gun Control SVM Accuracy: ", gc_svm_accuracy)
 print("Gun Control SVM False Positives: ", gc_svm_fp)
 print("Gun Control SVM False Negatives: ", gc_svm_fn)
@@ -62,16 +72,6 @@ print("Total DTC Accuracy: ", dtc_total_accuracy)
 print("Total CNN Accuracy: ", cnn_total_accuracy)
 print("Total LR Accuracy: ", lr_total_accuracy)
 
-
-gc_svm_persuasion_accuracy, gc_svm_persuasion_fp, gc_svm_persuasion_fn = run_SVM_Persuasion(gc_train_path, gc_test_path)
-gc_dtc_persuasion_accuracy, gc_dtc_persuasion_fp, gc_dtc_persuasion_fn = run_DTC_Persuasion(gc_train_path, gc_test_path)
-gc_cnn_persuasion_accuracy, gc_cnn_persuasion_fp, gc_cnn_persuasion_fn = run_CNN_Persuasion(gc_train_path, gc_test_path)
-gc_lr_persuasion_accuracy, gc_lr_persuasion_fp, gc_lr_persuasion_fn = run_LR_Persuasion(gc_train_path, gc_test_path)
-
-ab_svm_persuasion_accuracy, ab_svm_persuasion_fp, ab_svm_persuasion_fn = run_SVM_Persuasion(ab_train_path, ab_test_path)
-ab_dtc_persuasion_accuracy, ab_dtc_persuasion_fp, ab_dtc_persuasion_fn = run_DTC_Persuasion(ab_train_path, ab_test_path)
-ab_cnn_persuasion_accuracy, ab_cnn_persuasion_fp, ab_cnn_persuasion_fn = run_CNN_Persuasion(ab_train_path, ab_test_path)
-ab_lr_persuasion_accuracy, ab_lr_persuasion_fp, ab_lr_persuasion_fn = run_LR_Persuasion(ab_train_path, ab_test_path)
 
 print("Gun Control SVM Persuasion Accuracy: ", gc_svm_persuasion_accuracy)
 print("Gun Control SVM Persuasion False Positives: ", gc_svm_persuasion_fp)
