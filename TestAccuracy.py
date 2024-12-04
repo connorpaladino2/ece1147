@@ -56,3 +56,8 @@ print("Gun Control LR False Negatives: ", gc_lr_fn)
 # dtc_total_accuracy = (gc_dtc_accuracy + ab_dtc_accuracy) / 2
 # cnn_total_accuracy = (gc_cnn_accuracy + ab_cnn_accuracy) / 2
 # lr_total_accuracy = (gc_lr_accuracy + ab_lr_accuracy) / 2
+
+# print("Total SVM Accuracy: ", svm_total_accuracy)
+# print("Total DTC Accuracy: ", dtc_total_accuracy)
+# print("Total CNN Accuracy: ", cnn_total_accuracy)
+# print("Total LR Accuracy: ", lr_total_accuracy)
