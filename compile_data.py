@@ -28,13 +28,14 @@ for _, row_in in gun_text_df.iterrows():
 
     flag = False
     for _, row in data_df.iterrows():
-        if str(int(row.iloc[0]))[:5] == str(int(row_in.iloc[7]))[:5]:
+        if str(int(row.iloc[0]))[:4] == str(int(row_in.iloc[7]))[:4]:
             
             if row.iloc[3] == "oppose":
                 working_arr += [0.0]
             else:
                 working_arr += [1.0]
 
+            
             if row.iloc[4] == "no":
                 working_arr += [0.0]
             else:
@@ -42,7 +43,7 @@ for _, row_in in gun_text_df.iterrows():
             
             flag = True
             break
-        
+
     if not flag:
                 working_arr += [0.0, 0.0]
 
