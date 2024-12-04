@@ -5,7 +5,7 @@ from sklearn.metrics import classification_report
 
 # Load the datasets
 train_df = pd.read_csv('gun_train_data.csv')
-dev_df = pd.read_csv('data/data-20241202T145651Z-001/data/gun_control_dev.csv')
+dev_df = pd.read_csv('gun_test_data.csv')
 
 # List of question columns to include for averaging (focused on the specified columns)
 question_columns = [
@@ -28,32 +28,32 @@ X_dev = vectorizer.transform(dev_df['avg_confidence'].astype(str))
 clf_support = LogisticRegression()
 
 # Train the classifier on the training data (target: 'Support')
-clf_support.fit(X_train, train_df['Support'])
+clf_support.fit(X_train, train_df['Support?'])
 
 # Accuracy on the training data
-train_accuracy_support = clf_support.score(X_train, train_df['Support'])
+train_accuracy_support = clf_support.score(X_train, train_df['Support?'])
 print(f'Support Training Accuracy: {train_accuracy_support:.4f}')
 
 # Predictions and accuracy on the dev data (target: 'Support')
 predictions_support = clf_support.predict(X_dev)
-dev_accuracy_support = clf_support.score(X_dev, dev_df['Support'])
+dev_accuracy_support = clf_support.score(X_dev, dev_df['Support?'])
 print(f'Support Dev Accuracy: {dev_accuracy_support:.4f}')
 print("Support Classification Report:")
-print(classification_report(dev_df['Support'], predictions_support))
+print(classification_report(dev_df['Support?'], predictions_support))
 
 # Logistic regression for the 'Persuasive' column
 clf_persuasive = LogisticRegression()
 
 # Train the classifier on the training data (target: 'Persuasive')
-clf_persuasive.fit(X_train, train_df['Persuasive'])
+clf_persuasive.fit(X_train, train_df['Pursuasive?'])
 
 # Accuracy on the training data
-train_accuracy_persuasive = clf_persuasive.score(X_train, train_df['Persuasive'])
+train_accuracy_persuasive = clf_persuasive.score(X_train, train_df['Pursuasive?'])
 print(f'Persuasive Training Accuracy: {train_accuracy_persuasive:.4f}')
 
 # Predictions and accuracy on the dev data (target: 'Persuasive')
 predictions_persuasive = clf_persuasive.predict(X_dev)
-dev_accuracy_persuasive = clf_persuasive.score(X_dev, dev_df['Persuasive'])
+dev_accuracy_persuasive = clf_persuasive.score(X_dev, dev_df['Pursuasive?'])
 print(f'Persuasive Dev Accuracy: {dev_accuracy_persuasive:.4f}')
 print("Persuasive Classification Report:")
-print(classification_report(dev_df['Persuasive'], predictions_persuasive))
+print(classification_report(dev_df['Pursuasive?'], predictions_persuasive))
